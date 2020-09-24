@@ -1,0 +1,31 @@
+<div class="container">
+<div class="panel panel-primary">
+  <div class="panel-heading">Liste des produits</div>
+  <div class="panel-body">
+    <button type="button" class="btn btn-primary" (click)="onGetProducts()">Produits</button>
+  </div>
+  <div class="panel-body">
+
+    <div class="table-responsive">
+      <table class="table" *ngIf="produits">
+        <thead>
+        <tr>
+          <th>Reference</th>
+          <th>Designation</th>
+          <th>Prix</th>
+          <th>Quantité</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let p of produits._embedded.produits">
+          <td>{{p.reference}}</td>
+          <td>{{p.designation}}</td>
+          <td>{{p.prix|number:'0.2'}}</td>
+          <td>{{p.quantite}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+</div>
+</div>
