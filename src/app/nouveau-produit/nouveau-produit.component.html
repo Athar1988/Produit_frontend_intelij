@@ -1,1 +1,42 @@
-<p>nouveau-produit works!</p>
+<div class="container">
+  <div class="col-md-6">
+  <div class="panel panel-primary">
+    <div class="panel-heading">Ajoute des produits</div>
+    <div class="panel-body"  *ngIf="mode==1">
+
+      <form #f="ngForm" (ngSubmit)="onGetAjouter(f.value)">
+            <div class="form-group">
+          <label class="control-label">Desigantion</label>
+              <input class="form-control" TYPE="text" name="designation" ngModel></div>
+
+            <div class="form-group">
+          <label class="control-label">prix</label>
+              <input class="form-control" TYPE="number" name="prix" ngModel></div>
+
+              <div class="form-group">
+          <label class="control-label">quantite</label>
+                <input class="form-control" TYPE="text" name="quantite" ngModel></div>
+
+      <button type="submit" class="btn btn-primary" >Ajouter</button>
+      </form>
+    </div>
+    <div class="panel-body" *ngIf="mode==2">
+      <button (click)="onNewProduit()" class="btn btn-success">Nouveau Produit</button>
+      <div class="form-group">
+        <label>Reference:</label> <label>{{currentProduit.reference}}</label>
+      </div>
+      <div class="form-group">
+        <label>Designation:</label> <label>{{currentProduit.designation}}</label>
+      </div>
+      <div class="form-group">
+        <label>Prix:</label> <label>{{currentProduit.prix}}</label>
+      </div>
+      <div class="form-group">
+        <label>Quantite:</label> <label>{{currentProduit.quantite}}</label>
+      </div>
+    </div>
+
+    </div>
+    </div>
+  </div>
+

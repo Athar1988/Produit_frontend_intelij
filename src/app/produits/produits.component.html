@@ -5,7 +5,13 @@
     <button type="button" class="btn btn-primary" (click)="onGetProducts()">Produits</button>
   </div>
   <div class="panel-body">
-
+<form #f="ngForm" (ngSubmit)="onGetChercher(f.value)">
+  <div class="form-group">
+  <label>Mot de clé</label>
+    <input TYPE="text" name="keyword" ngModel>
+    <button type="submit" class="btn btn-primary">Chercher</button>
+  </div>
+</form>
     <div class="table-responsive">
       <table class="table" *ngIf="produits">
         <thead>
@@ -22,9 +28,15 @@
           <td>{{p.designation}}</td>
           <td>{{p.prix|number:'0.2'}}</td>
           <td>{{p.quantite}}</td>
+          <td><a class="btn btn-danger" (click)="onSupprime(p.reference)">Supprimer</a> </td>
+          <td><a class="btn btn-success" (click)="onEditer(p)">Modifier</a> </td>
         </tr>
         </tbody>
       </table>
+      <ul *ngIf="pages" class="pagination">
+        <li class="clickable" [ngClass]="i==currentpage?'active':''" *ngFor="let p of pages; let i=index">
+        <a (click)="onPageProduct(i)">{{i}}</a></li>
+      </ul>
     </div>
 </div>
 </div>
