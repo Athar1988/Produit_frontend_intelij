@@ -4,11 +4,13 @@ import {CataloguesService} from '../services/catalogues.service';
 import {newArray} from '@angular/compiler/src/util';
 import {Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-produits',
   templateUrl: './produits.component.html',
   styleUrls: ['./produits.component.css']
 })
+
 
 export class ProduitsComponent implements OnInit {
   //une variable où on va stocker les donner envoyé
@@ -18,6 +20,7 @@ export class ProduitsComponent implements OnInit {
   public totalpages:number;
   public pages:Array<number>;
   public keyword:string;
+  public chercher: number=null;
 
   constructor(private catService:CataloguesService , private router:Router) { }
 
@@ -38,17 +41,26 @@ this.catService.getProduit(this.currentpage,this.size)
 
   onPageProduct(i) {
     this.currentpage=i;
-    this.ChercherProduct();
+    if(this.keyword!=null){
+      this.ChercherProduct();
+    }
+   else{
+      this.onGetProducts();
+    }
+
   }
 
 
     onGetChercher(form: any) {
       this.currentpage=0;
       this.keyword=form.keyword;
+      console.log(this.keyword);
       this.ChercherProduct();
       }
 
   ChercherProduct() {
+    console.log(this.keyword,this.currentpage,this.size);
+    this.chercher=1;
     this.catService.getProductByKeyWord(this.keyword,this.currentpage,this.size)
       .subscribe(data=>{
           this.totalpages=data["page"].totalPages;

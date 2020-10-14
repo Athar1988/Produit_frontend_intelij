@@ -9,6 +9,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { EditerProduitComponent } from './editer-produit/editer-produit.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
